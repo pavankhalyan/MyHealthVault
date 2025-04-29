@@ -10,6 +10,7 @@ function PatientDashboard() {
   useEffect(() => {
     const fetchRecords = async () => {
       try {
+        // will be replaced with original api
         const response = await axios.get("/api/records/patient");
         setRecords(response.data.records);
       } catch (error) {
