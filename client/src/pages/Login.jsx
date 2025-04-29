@@ -6,7 +6,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("patient");
-  const [message, setMessage] = useState(""); // New state for login response
+  const [message, setMessage] = useState(""); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,7 +55,12 @@ function Login() {
         </select>
         <button type="submit">Login</button>
 
-        {message && <p className="login-message">{message}</p>}
+        {message && (
+         <p className={`login-message ${message.includes("successful") ? "success" : "error"}`}>
+        {message}
+         </p>
+        )}
+        
       </form>
     </div>
   );

@@ -44,3 +44,26 @@
   .signup-form button:hover {
     background-color: #2980b9;
   }
+
+  .signup-message {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+
+  .signup-message.success {
+    color: #0b3e14;
+    background-color: #d1f5e2;
+    border: 1px solid #b6e5cc;
+  }
+  
+
+  .signup-message.error {
+    color: #8b1c1c;
+    background-color: #ffe2e2;
+    border: 1px solid #f1bebe;
+  }

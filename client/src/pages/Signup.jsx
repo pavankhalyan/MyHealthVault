@@ -7,7 +7,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("patient");
-  const [message, setMessage] = useState(""); // New message state
+  const [message, setMessage] = useState(""); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,7 +64,12 @@ function Signup() {
         </select>
         <button type="submit">Signup</button>
 
-        {message && <p className="signup-message">{message}</p>}
+        {message && (
+         <p className={`signup-message ${message.includes("successful") ? "success" : "error"}`}>
+        {message}
+         </p>
+        )}
+
       </form>
     </div>
   );
