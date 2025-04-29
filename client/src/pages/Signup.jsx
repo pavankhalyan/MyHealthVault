@@ -7,6 +7,8 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("patient");
+  const [message, setMessage] = useState(""); // New message state
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -19,13 +21,13 @@ function Signup() {
       });
 
       console.log("Signup successful:", response.data);
-      alert("Signup successful!");
-      
+      setMessage(response.data.message || "Signup successful!");
+
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        setMessage(error.response.data.message);
       } else {
-        alert("Signup failed: Network or server error.");
+        setMessage("Signup failed: Network or server error.");
       }
       console.error("Signup error:", error);
     }
@@ -61,10 +63,11 @@ function Signup() {
           <option value="doctor">Doctor</option>
         </select>
         <button type="submit">Signup</button>
+
+        {message && <p className="signup-message">{message}</p>}
       </form>
     </div>
   );
 }
 
 export default Signup;
-

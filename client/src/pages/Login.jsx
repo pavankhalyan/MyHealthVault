@@ -6,28 +6,30 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("patient");
+  const [message, setMessage] = useState(""); // New state for login response
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    const response = await axios.post("http://localhost:5004/api/auth/login", {
-      email,
-      password,
-    });
+    try {
+      const response = await axios.post("http://localhost:5004/api/auth/login", {
+        email,
+        password,
+      });
 
-    console.log("Login successful:", response.data);
+      console.log("Login successful:", response.data);
+      setMessage("Login successful!");
+      // Optional: redirect to dashboard here
 
-  } catch (error) {
-    if (error.response) {
-      alert(error.response.data.message);
-    } else {
-      alert("Network error or server is not responding.");
+    } catch (error) {
+      if (error.response) {
+        setMessage(error.response.data.message);
+      } else {
+        setMessage("Network error or server is not responding.");
+      }
+      console.error("Login error:", error);
     }
-    console.error("Login error:", error);
-  }
-};
-
+  };
 
   return (
     <div className="login-container">
@@ -52,6 +54,8 @@ const handleSubmit = async (e) => {
           <option value="doctor">Doctor</option>
         </select>
         <button type="submit">Login</button>
+
+        {message && <p className="login-message">{message}</p>}
       </form>
     </div>
   );
