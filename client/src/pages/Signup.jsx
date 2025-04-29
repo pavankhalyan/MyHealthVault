@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import '../style/Signup.css'; 
 
 function Signup() {
@@ -6,11 +7,28 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("patient");
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Signing up:", { name, email, password, role });
-    // TODO: Call backend API to signup
+
+    try {
+      const response = await axios.post("http://localhost:5004/api/auth/signup", {
+        name,
+        email,
+        password,
+        role,
+      });
+
+      console.log("Signup successful:", response.data);
+      alert("Signup successful!");
+      
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert("Signup failed: Network or server error.");
+      }
+      console.error("Signup error:", error);
+    }
   };
 
   return (
