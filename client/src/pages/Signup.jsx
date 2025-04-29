@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../style/Signup.css'; 
 
 function Signup() {
   const [name, setName] = useState("");
@@ -13,8 +14,8 @@ function Signup() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem", width: "300px" }}>
+    <div className="signup-container">
+      <form onSubmit={handleSubmit} className="signup-form">
         <h2>Signup</h2>
         <input 
           type="text" 
@@ -48,3 +49,4 @@ function Signup() {
 }
 
 export default Signup;
+
