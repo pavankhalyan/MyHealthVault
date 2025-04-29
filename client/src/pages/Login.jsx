@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../style/Login.css'; 
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -12,8 +13,8 @@ function Login() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem", width: "300px" }}>
+    <div className="login-container">
+      <form onSubmit={handleSubmit} className="login-form">
         <h2>Login</h2>
         <input 
           type="email" 
