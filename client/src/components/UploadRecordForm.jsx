@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import '../style/UploadRecordForm.css';
 
 function UploadRecordForm() {
   const [file, setFile] = useState(null);
@@ -20,7 +21,7 @@ function UploadRecordForm() {
 
     try {
         // will be replaced with original api
-      const response = await axios.post("/api/records/upload", formData, {
+      const response = await axios.post("http://localhost:5004/api/records/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

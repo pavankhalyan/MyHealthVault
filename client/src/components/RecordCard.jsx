@@ -1,3 +1,5 @@
+import '../style/RecordCard.css'; 
+
 function RecordCard({ record }) {
     return (
       <div className="record-card">

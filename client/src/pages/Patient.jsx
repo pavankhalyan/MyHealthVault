@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import RecordCard from "../components/RecordCard";
 import UploadRecordForm from "../components/UploadRecordForm";
+import '../style/Patient.css';  
+
 
 function PatientDashboard() {
   const [records, setRecords] = useState([]);
@@ -11,7 +13,7 @@ function PatientDashboard() {
     const fetchRecords = async () => {
       try {
         // will be replaced with original api
-        const response = await axios.get("/api/records/patient");
+        const response = await axios.get("http://localhost:5004/api/records/patient");
         setRecords(response.data.records);
       } catch (error) {
         console.error("Error fetching records:", error);

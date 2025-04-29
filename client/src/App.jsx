@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login.jsx";
 import Signup from './pages/Signup.jsx'
+import PatientDashboard from './pages/Patient.jsx';
 
 function App() {
      
@@ -11,6 +12,7 @@ function App() {
        <Route path="/" element={<Landing />} />
        <Route path="/login" element={<Login />} />
        <Route path="/signup" element={<Signup />} />
+       <Route path="/dashboard" element={<PatientDashboard />} />
       </Routes>
     </Router>
   )
