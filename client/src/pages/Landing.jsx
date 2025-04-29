@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import "../App.css";
+import "../style/Landing.css";
 
-import LandingImage from '../assets/Healthcare.jpg';
+
 function Landing() {
   return (
     <div className="landing-container">
