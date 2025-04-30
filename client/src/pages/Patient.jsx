@@ -34,7 +34,8 @@ function PatientDashboard() {
           <h2>Your Medical Records</h2>
           {records.length > 0 ? (
             records.map((record) => (
-              <RecordCard key={record.id} record={record} />
+              <RecordCard key={record._id} record={record} />
+
             ))
           ) : (
             <p>No records available.</p>

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const recordSchema = new mongoose.Schema({
   patientId: {
@@ -12,4 +12,5 @@ const recordSchema = new mongoose.Schema({
   uploadedAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Record", recordSchema);
+export default mongoose.model("Record", recordSchema);
+

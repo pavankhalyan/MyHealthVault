@@ -11,16 +11,22 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-router.post("/upload-multiple", upload.array("files", 10), async (req, res) => {
+//  (replace with real auth)
+const mockAuth = (req, res, next) => {
+  req.user = { id: "662f6abc1234567890fedcba" };
+  next();
+};
+
+
+router.post("/upload-multiple", mockAuth, upload.array("files", 10), async (req, res) => {
   try {
     const { title, description } = req.body;
     const files = req.files;
+    const patientId = req.user.id;
 
     if (!files || files.length === 0) {
       return res.status(400).json({ success: false, message: "No files uploaded" });
     }
-
-    const patientId = req.user?.id || "662f6abc1234567890fedcba"; 
 
     const records = await Promise.all(
       files.map((file) => {
@@ -34,6 +40,18 @@ router.post("/upload-multiple", upload.array("files", 10), async (req, res) => {
       })
     );
 
+    res.json({ success: true, records });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+
+router.get("/patient", mockAuth, async (req, res) => {
+  try {
+    const patientId = req.user.id;
+    const records = await Record.find({ patientId });
     res.json({ success: true, records });
   } catch (err) {
     console.error(err);
