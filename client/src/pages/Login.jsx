@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import '../style/Login.css'; 
 
@@ -7,6 +8,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("patient");
   const [message, setMessage] = useState(""); 
+  const navigate = useNavigate(); // ⬅️ added
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +21,13 @@ function Login() {
 
       console.log("Login successful:", response.data);
       setMessage("Login successful!");
-      // Optional: redirect to dashboard here
+
+     
+      if (role === "patient") {
+        navigate("/dashboard");
+      } else if (role === "doctor") {
+        navigate("/doctor-dashboard"); 
+      }
 
     } catch (error) {
       if (error.response) {
@@ -57,7 +65,7 @@ function Login() {
 
         {message && (
          <p className={`login-message ${message.includes("successful") ? "success" : "error"}`}>
-        {message}
+          {message}
          </p>
         )}
         
