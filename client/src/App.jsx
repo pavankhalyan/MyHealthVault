@@ -3,6 +3,7 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login.jsx";
 import Signup from './pages/Signup.jsx'
 import PatientDashboard from './pages/Patient.jsx';
+import DoctorDashboard from './pages/DoctorDashboard.jsx';
 
 function App() {
      
@@ -13,6 +14,7 @@ function App() {
        <Route path="/login" element={<Login />} />
        <Route path="/signup" element={<Signup />} />
        <Route path="/dashboard" element={<PatientDashboard />} />
+       <Route path ="/doctor-dashboard" element={<DoctorDashboard />} />
       </Routes>
     </Router>
   )

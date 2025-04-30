@@ -1,40 +1,46 @@
 import { useState } from "react";
 import axios from "axios";
-import '../style/UploadRecordForm.css';
+import "../style/UploadRecordForm.css";
 
 function UploadRecordForm() {
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [message, setMessage] = useState(""); // State for message
+  const [message, setMessage] = useState("");
+  const [fileURLs, setFileURLs] = useState([]);
 
-  const handleFileChange = (e) => setFile(e.target.files[0]);
+  const handleFileChange = (e) => {
+    setFiles([...e.target.files]);
+  };
+
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("file", file);
+
+    files.forEach((file) => {
+      formData.append("files", file);
+    });
     formData.append("title", title);
     formData.append("description", description);
 
     try {
-        // will be replaced with original api
-      const response = await axios.post("http://localhost:5004/api/records/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      const response = await axios.post("http://localhost:5004/api/records/upload-multiple", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true, 
       });
 
       if (response.data.success) {
-        setMessage("Record uploaded successfully.");
+        setMessage("Files uploaded successfully.");
+        setFileURLs(response.data.records.map((rec) => `http://localhost:5004/${rec.filePath}`));
       } else {
-        setMessage("Error uploading record.");
+        setMessage("Upload failed.");
       }
     } catch (error) {
-      setMessage("Error uploading record.");
       console.error(error);
+      setMessage("Upload error.");
     }
   };
 
@@ -50,13 +56,24 @@ function UploadRecordForm() {
           <textarea value={description} onChange={handleDescriptionChange} />
         </label>
         <label>
-          Upload File:
-          <input type="file" onChange={handleFileChange} />
+          Upload Files:
+          <input type="file" multiple onChange={handleFileChange} />
         </label>
         <button type="submit">Upload</button>
       </form>
 
       {message && <p>{message}</p>}
+      {fileURLs.length > 0 && (
+        <ul>
+          {fileURLs.map((url, index) => (
+            <li key={index}>
+              <a href={url} target="_blank" rel="noreferrer">
+                View File {index + 1}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
