@@ -1,254 +1,109 @@
 
 body {
-  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-/* Dashboard Container */
-.dashboard {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-
-.dashboard h1 {
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
   color: #333;
 }
 
 
-button {
-  padding: 10px 20px;
-  font-size: 1rem;
+.dashboard-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  padding-top: 60px; 
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+
+.dashboard {
+  width: 100%;
+  max-width: 1000px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.8); /* Glass effect */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  backdrop-filter: blur(6px);
+  overflow-y: auto;
+}
+
+
+.dashboard h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: #222;
+  text-align: center;
+}
+
+
+.dashboard button {
+  display: block;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  padding: 0.8rem 1.5rem;
+  margin: 0 auto 2rem auto;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: background 0.3s ease;
 }
 
-button:hover {
+.dashboard button:hover {
   background-color: #0056b3;
 }
 
 
 .records {
-  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
 }
 
 .records h2 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-  color: #333;
+  font-size: 1.6rem;
+  color: #444;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+.records p {
+  font-style: italic;
+  color: #777;
+  text-align: center;
 }
 
 
-.record-card {
-  background-color: white;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.dashboard::-webkit-scrollbar {
+  width: 8px;
 }
 
-.record-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.dashboard::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.record-card h3 {
-  font-size: 1.5rem;
-  color: #333;
-}
-
-.record-card p {
-  font-size: 1rem;
-  color: #666;
-  margin: 5px 0;
-}
-
-.record-card button {
-  margin: 5px 0;
-  font-size: 0.9rem;
-  background-color: #28a745;
-}
-
-.record-card button:hover {
-  background-color: #218838;
-}
-
-.record-card .view-record {
-  background-color: #007bff;
-}
-
-.record-card .view-record:hover {
-  background-color: #0056b3;
-}
-
-
-.upload-record-form {
-  margin-top: 30px;
-}
-
-.upload-record-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.upload-record-form label {
-  font-size: 1rem;
-  color: #333;
-}
-
-.upload-record-form input, 
-.upload-record-form textarea {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-}
-
-.upload-record-form input[type="file"] {
-  padding: 5px;
-}
-
-.upload-record-form button {
-  align-self: flex-start;
-  font-size: 1rem;
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.upload-record-form button:hover {
-  background-color: #0056b3;
+.dashboard::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 
 @media screen and (max-width: 768px) {
   .dashboard {
-    padding: 15px;
+    padding: 1.5rem;
   }
 
   .dashboard h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
-  .record-card {
-    padding: 10px;
-  }
-
-  .record-card h3 {
-    font-size: 1.2rem;
-  }
-
-  .record-card p {
-    font-size: 0.9rem;
-  }
-
-  .upload-record-form form {
-    gap: 10px;
-  }
-
-  .upload-record-form input,
-  .upload-record-form textarea {
-    font-size: 0.9rem;
-    padding: 8px;
-  }
-
-  .upload-record-form button {
-    font-size: 0.9rem;
-    padding: 8px 15px;
-  }
-}
-
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  .dashboard {
-    padding: 20px;
-  }
-
-  .dashboard h1 {
-    font-size: 2.2rem;
-  }
-
-  .record-card {
-    padding: 12px;
-  }
-
-  .record-card h3 {
+  .records h2 {
     font-size: 1.4rem;
-  }
-
-  .record-card p {
-    font-size: 1rem;
-  }
-
-  .upload-record-form form {
-    gap: 12px;
-  }
-
-  .upload-record-form input,
-  .upload-record-form textarea {
-    font-size: 1rem;
-    padding: 9px;
-  }
-
-  .upload-record-form button {
-    font-size: 1rem;
-    padding: 9px 18px;
-  }
-}
-
-
-@media screen and (min-width: 1024px) {
-  .dashboard {
-    padding: 30px;
-  }
-
-  .dashboard h1 {
-    font-size: 2.5rem;
-  }
-
-  .record-card {
-    padding: 15px;
-  }
-
-  .record-card h3 {
-    font-size: 1.6rem;
-  }
-
-  .record-card p {
-    font-size: 1.1rem;
-  }
-
-  .upload-record-form form {
-    gap: 15px;
-  }
-
-  .upload-record-form input,
-  .upload-record-form textarea {
-    font-size: 1.1rem;
-    padding: 10px;
-  }
-
-  .upload-record-form button {
-    font-size: 1.1rem;
-    padding: 12px 20px;
   }
 }

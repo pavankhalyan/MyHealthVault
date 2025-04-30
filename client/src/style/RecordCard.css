@@ -1,47 +1,42 @@
 .record-card {
-    background: rgba(255, 255, 255, 0.8); /* Light background for the cards */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .record-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .record-card p {
-    font-size: 1rem;
-    color: #555;
-  }
-  
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.record-card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.record-card p {
+  margin: 0.3rem 0;
+  color: #555;
+}
+
+.record-card button {
+  margin-right: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.record-card button:hover {
+  background-color: #1e7e34;
+}
+
+@media screen and (max-width: 600px) {
   .record-card button {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
     width: 100%;
   }
-  
-  .record-card button:hover {
-    background-color: #0056b3;
-  }
-  
-  .record-card button:last-child {
-    background-color: #28a745;
-    margin-top: 5px;
-  }
-  
-  .record-card button:last-child:hover {
-    background-color: #218838;
-  }
-  
+}

@@ -23,24 +23,27 @@ function PatientDashboard() {
   }, []);
 
   return (
-    <div className="dashboard">
-      <h1>Patient Dashboard</h1>
-      <button onClick={() => setIsUploading(!isUploading)}>
-        {isUploading ? "Cancel Upload" : "Upload Medical Record"}
-      </button>
-      {isUploading && <UploadRecordForm />}
-      <div className="records">
-        <h2>Your Medical Records</h2>
-        {records.length > 0 ? (
-          records.map((record) => (
-            <RecordCard key={record.id} record={record} />
-          ))
-        ) : (
-          <p>No records available.</p>
-        )}
+    <div className="dashboard-wrapper">
+      <div className="dashboard">
+        <h1>Patient Dashboard</h1>
+        <button onClick={() => setIsUploading(!isUploading)}>
+          {isUploading ? "Cancel Upload" : "Upload Medical Record"}
+        </button>
+        {isUploading && <UploadRecordForm />}
+        <div className="records">
+          <h2>Your Medical Records</h2>
+          {records.length > 0 ? (
+            records.map((record) => (
+              <RecordCard key={record.id} record={record} />
+            ))
+          ) : (
+            <p>No records available.</p>
+          )}
+        </div>
       </div>
     </div>
   );
+  
 }
 
 export default PatientDashboard;
