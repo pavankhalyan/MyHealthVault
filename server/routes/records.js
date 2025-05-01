@@ -1,8 +1,9 @@
-const express = require("express");
+import express from "express";
+import multer from "multer";
+import path from "path";
+import Record from "../models/Record.js";
+
 const router = express.Router();
-const multer = require("multer");
-const Record = require("../models/Record");
-const path = require("path");
 
 
 const storage = multer.diskStorage({
@@ -59,4 +60,4 @@ router.get("/patient", mockAuth, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default  router;
